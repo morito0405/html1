@@ -60,8 +60,8 @@
       <?= (($yen[200])+($yen[200]*$tax/100))*$dz;?>円
       </td>
     </tr>
-    
   </table>
+  <p>消費税は<?php echo $tax;?>%です。</p>
 </body>
 
 </html>
