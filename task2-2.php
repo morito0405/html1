@@ -7,59 +7,31 @@
 </head>
 <body>
   <?php 
-  $top= Array('merchandise'=>'商品','price'=>'価格','taxin'=>'税込価格');?>
-  <?php
-  $stationary= Array('pencil'=>'鉛筆','eraser'=>'消しゴム','ruler'=>'定規');?>
-  <?php
+  $top= Array('merchandise'=>'商品','price'=>'価格','taxin'=>'税込価格');
+  $stationary= Array('pencil'=>'鉛筆','eraser'=>'消しゴム','ruler'=>'定規');
   $yen= Array('100'=>'100','200'=>'200','300'=>'300');
-  ?>
-  <?php
-  $tax= '10';?>
+  define('TAX','10%');?>
   
   <table border="1" cellspacing="0" width="100%">
     <tr>
-      <th>
-        <?php echo $top[merchandise];?>
-      </th>
-      <th>
-        <?php echo $top[price];?>
-      </th>
-      <th>
-        <?php echo $top[taxin];?>
-      </th>
+      <th><?= $top[merchandise];?></th>
+      <th><?= $top[price];?></th>
+      <th><?= $top[taxin];?></th>
     </tr>
     <tr>
-      <td>
-        <?php echo $stationary[pencil];?>
-      </td>
-      <td>
-        <?php echo $yen[100];?>円
-      </td>
-      <td>
-        <?= ($yen[100])+(($yen[100]*$tax/100));?>円
-      </td>
+      <td><?= $stationary[pencil];?></td>
+      <td><?= $yen[100];?>円</td>
+      <td><?= ($yen[100])+(($yen[100]*TAX/100));?>円</td>
     </tr>
     <tr>
-      <td>
-        <?php echo $stationary[eraser];?>
-      </td>
-      <td>
-      <?php echo $yen[200];?>円
-      </td>
-      <td>
-      <?= ($yen[200])+(($yen[200]*$tax/100));?>円
-      </td>
+      <td><?= $stationary[eraser];?></td>
+      <td><?= $yen[200];?>円</td>
+      <td><?= ($yen[200])+(($yen[200]*TAX/100));?>円</td>
     </tr>
     <tr>
-      <td>
-      <?php echo $stationary[ruler];?>
-      </td>
-      <td>
-      <?php echo $yen[300];?>円
-      </td>
-      <td>
-      <?= ($yen[300])+(($yen[300]*$tax/100));?>円
-      </td>
+      <td><?= $stationary[ruler];?></td>
+      <td><?= $yen[300];?>円</td>
+      <td><?= ($yen[300])+(($yen[300]*TAX/100));?>円</td>
     </tr>
   </table>
 </body>
