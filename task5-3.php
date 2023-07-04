@@ -31,6 +31,7 @@ $tax = 10; // 税率（%）
         <td><?php echo $product['価格'] + ($product['価格'] * ($tax/ 100)); ?>円</td>
       </tr>
     <?php } ?>
+  
   </tbody>
 </table>
 </body>
