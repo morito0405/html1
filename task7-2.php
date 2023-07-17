@@ -30,7 +30,7 @@ class Staff{
   }
 
  public function show(){
-    printf("(S%s) %s %d歳 %s<br>\n",$this->id, $this->name,$this->age,$this->sex === '男' ? '男性' : '女性');
+    printf("(%s) %s %d歳 %s<br>\n",$this->id, $this->name,$this->age,$this->sex === '男' ? '男性' : '女性');
   }
 }
 class PartStaff extends Staff{
