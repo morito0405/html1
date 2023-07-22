@@ -1,3 +1,64 @@
+  <?php
+  $error_msgs = array();  //エラーメッセージを格納する配列
+  $name = $_POST['name'] ?? '';
+  $kana = $_POST['kana'] ?? '';
+  $email = $_POST['email'] ?? '';
+  $tel = $_POST['tel'] ?? '';
+  $inquiry = $_POST['inquiry'] ?? '';
+  // var_dump($inquiry, $_POST['inquiry'] );
+  $message = $_POST['message'] ?? '';
+
+  //フォームが送信された場合の処理
+  $is_validated = true;
+  if($_SERVER['REQUEST_METHOD'] ==='POST'){
+    //必須項目のチェック
+    if(empty($_POST['name'])){
+      $error_msgs[] = "お名前は必須です。";
+    }
+    if(empty($_POST['kana'])){
+      $error_msgs[] = "フリガナは必須です。";
+    }
+    if(empty($_POST['email'])){
+      $error_msgs[] = "メールアドレスは必須です。";
+    }
+    if(empty($_POST['tel'])){
+      $error_msgs[] = "電話番号は必須です。";
+    }
+    if(empty($_POST['inquiry'])){
+      $error_msgs[] = "お問い合わせ項目は必須です。";
+    }
+    if(empty($_POST['message'])){
+      $error_msgs[] = "お問い合わせ内容は必須です。";
+    }
+    //バリデーションチェック
+    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)){
+      $error_msgs[] = "正しい形式のメールアドレスを入力してください。";
+      $is_validated = false;
+    }
+    if(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
+      $error_msgs[] ="正しい形式の電話番号を入力してください。";
+      $is_validated = false;
+    }
+    
+    //エラーメッセージがない場合、送信ページにリダイレクト
+    // if(empty($error_msgs)){
+    //   header("Location: task8-2.php");
+    //   exit();
+    // }
+  }
+  ?>
+  <!-- <?php
+  //エラーメッセージがある場合に表示
+  // if(!empty($error_msgs)){
+  //   echo "<div class= 'error'>";
+  //   foreach ($error_msgs as $msg){
+  //     echo "<p>" . $msg . "</p>";
+  //   }
+  //   echo "</div>";
+  // }else{
+  //   echo "送信完了しました。";
+  // }
+  ?> -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -51,145 +112,57 @@
       </p>
     </div>
   </div>
-  <?php
-  $error_msgs = array();  //エラーメッセージを格納する配列
-  $name = $_POST['name'] ?? '';
-  $kana = $_POST['kana'] ?? '';
-  $email = $_POST['email'] ?? '';
-  $tel = $_POST['tel'] ?? '';
-  $inquiry = $_POST['inquiry'] ?? '';
-  $message = $_POST['message'] ?? '';
-
-  //フォームが送信された場合の処理
-  $is_validated = true;
-  if($_SERVER['REQUEST_METHOD'] ==='POST'){
-    //必須項目のチェック
-    if(empty($_POST['name'])){
-      $error_msgs[] = "お名前は必須です。";
-    }
-    if(empty($_POST['kana'])){
-      $error_msgs[] = "フリガナは必須です。";
-    }
-    if(empty($_POST['email'])){
-      $error_msgs[] = "メールアドレスは必須です。";
-    }
-    if(empty($_POST['tel'])){
-      $error_msgs[] = "電話番号は必須です。";
-    }
-    if(empty($_POST['inquiry'])){
-      $error_msgs[] = "お問い合わせ項目は必須です。";
-    }
-    if(empty($_POST['message'])){
-      $error_msgs[] = "お問い合わせ内容は必須です。";
-    }
-    //バリデーションチェック
-    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)){
-      $error_msgs[] = "正しい形式のメールアドレスを入力してください。";
-      $is_validated = false;
-    }
-    if(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
-      $error_msgs[] ="正しい形式の電話番号を入力してください。";
-      $is_validated = false;
-    }
-
-  //エラーメッセージがない場合、送信ページにリダイレクト
-  if(empty($error_msgs)){
-    header("Location: task8-2.php");
-    exit();
-  }
-  }
-  ?>
   
   <h1>お問い合わせフォーム</h1>
-  <?php
-  //エラーメッセージがある場合に表示
-  if(!empty($error_msgs)){
-    echo "<div class= 'error'>";
-    foreach ($error_msgs as $msg){
-      echo "<p>" . $msg . "</p>";
-    }
-    echo "</div>";
-  }else{
-    echo "送信完了しました。";
-  }
-  ?>
 
-<!--フォームの入力項目-->
-<form action="task8-1.php" method="POST">
-  <div class="form-item">
-    <label for="name">お名前</label>
-    <input type="text" id="name" name="name" required value= "<?= $name;?>">
-  </div>
-  <div class="form-item">
-    <label for="kana">フリガナ</label>
-    <input type="text" id="kana" name="kana" required value= "<?= $kana;?>">
-  </div>
-  <div class="form-item">
-    <label for="email">メールアドレス</label>
-    <input type="email" id="email" name="email" required
-    value= "<?= $email;?>">
-  </div>
-  <div class="form-item">
-    <label for="tel">電話番号</label>
-    <input type="tel" id="tel" name="tel" required
-    value= "<?= $tel;?>">
-  </div>
-  <div class="form-item">
-    <label for="inquiry">お問い合わせ項目</label>
-    <input type="text" class="Form-Item-Input" name="inquiry" value= "<?= $inquiry; ?>" required> 
-  </div>
-  <div class="form-item">
-    <label for="message">お問い合わせ内容</label>
-    <textarea class= "Form-Item-Textarea" name="message" required><?= $message;?></textarea>
-  </div>
-  <?php if($is_validated) : ?>
-  <input type="submit" value="送信">
-  <?php else : ?>
-  <input type="submit" value="確認">
-  <?php endif; ?>
-</form>
 </body>
   <!-- ここから -->
-  
+<?php if($is_validated) : ?>
+<form action ="task8-2.php" method="POST">
+<?php else : ?>
 <form action="task8-1.php" method="POST">
+<?php endif; ?>
+
   <div class="Form">
     <div class="Form-Item">
       <p class="Form-Item-Label">
         お名前 
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <input type="text" class="Form-Item-Input" name="name" placeholder="山田太郎">
+      <input type="text" class="Form-Item-Input" name="name" placeholder="山田太郎" value= "<?= $name;?>">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">フリガナ
         <span class="Form-Item-Label-Required">必須<span> 
       </p>
-      <input type="text" class="Form-Item-Input" name="kana" placeholder="ヤマダタロウ">
+      <input type="text" class="Form-Item-Input" name="kana" placeholder="ヤマダタロウ" value= "<?= $kana;?>">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">メールアドレス
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <input type="email" class="Form-Item-Input" name="email" placeholder="info@fast-creademy.jp">
+      <input type="email" class="Form-Item-Input" name="email" placeholder="info@fast-creademy.jp"value= "<?= $email;?>">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">電話番号
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <input type="text" class="Form-Item-Input" name="tel" placeholder="00000000000">
+      <input type="text" class="Form-Item-Input" name="tel" placeholder="00000000000"value= "<?= $tel;?>">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">お問い合わせ項目
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <input type="text" class="Form-Item-Input" name="
-      inquiry" placeholder="選択してください">
+      <select name ="inquiry" class= "Form-Item-Input">
+        <option value= "">選択してください</option>
+        <option value= "b">問い合わせ１</option>
+      </select>
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label isMsg">お問い合わせ内容
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <textarea class="Form-Item-Textarea" name="message" placeholder="こちらにお問い合わせ内容をご記入ください"></textarea>
+      <textarea class="Form-Item-Textarea" name="message" placeholder="こちらにお問い合わせ内容をご記入ください"><?= $message;?></textarea>
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">個人情報保護方針
@@ -201,7 +174,12 @@
         </label>
       </div>
     </div>
-    <input type="submit" class="Form-Btn" value="確認">
+    <!-- <input type="submit" class="Form-Btn" value="確認"> -->
+    <?php if($is_validated) : ?>
+  <input type="submit"class="Form-Btn"value="送信">
+  <?php else : ?>
+  <input type="submit" class="Form-Btn" value="確認">
+  <?php endif; ?>
 </form>
   <!-- ここまで -->
   <div class="sec_05">

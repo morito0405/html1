@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel ="stylesheet">
   <title>送信完了ページ</title>
+  <style>
+    h1{
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header>
