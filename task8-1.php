@@ -118,7 +118,7 @@
 </body>
   <!-- ここから -->
 <?php if($is_validated) : ?>
-<form action ="task8-2.php" method="POST">
+<form action ="task9-1.php" method="POST">
 <?php else : ?>
 <form action="task8-1.php" method="POST">
 <?php endif; ?>
