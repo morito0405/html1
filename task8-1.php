@@ -5,29 +5,29 @@
   $email = $_POST['email'] ?? '';
   $tel = $_POST['tel'] ?? '';
   $inquiry = $_POST['inquiry'] ?? '';
-  // var_dump($inquiry, $_POST['inquiry'] );
+  // var_dump($kana, $_POST['kana'] );
   $message = $_POST['message'] ?? '';
 
   //フォームが送信された場合の処理
   $is_validated = true;
   if($_SERVER['REQUEST_METHOD'] ==='POST'){
     //必須項目のチェック
-    if(empty($_POST['name'])){
+    if(empty($name)){
       $error_msgs[] = "お名前は必須です。";
     }
-    if(empty($_POST['kana'])){
+    if(empty($kana)){
       $error_msgs[] = "フリガナは必須です。";
     }
-    if(empty($_POST['email'])){
+    if(empty($email)){
       $error_msgs[] = "メールアドレスは必須です。";
     }
-    if(empty($_POST['tel'])){
+    if(empty($tel)){
       $error_msgs[] = "電話番号は必須です。";
     }
-    if(empty($_POST['inquiry'])){
+    if(empty($inquiry)){
       $error_msgs[] = "お問い合わせ項目は必須です。";
     }
-    if(empty($_POST['message'])){
+    if(empty($message)){
       $error_msgs[] = "お問い合わせ内容は必須です。";
     }
     //バリデーションチェック
@@ -40,25 +40,16 @@
       $is_validated = false;
     }
     
-    //エラーメッセージがない場合、送信ページにリダイレクト
-    // if(empty($error_msgs)){
-    //   header("Location: task8-2.php");
-    //   exit();
-    // }
+
+
+    // エラーメッセージがない場合、送信ページにリダイレクト
+    if(empty($error_msgs)){
+      header("Location: task8-2.php");
+      exit();
+    }
   }
+  // var_dump($error_msgs);
   ?>
-  <!-- <?php
-  //エラーメッセージがある場合に表示
-  // if(!empty($error_msgs)){
-  //   echo "<div class= 'error'>";
-  //   foreach ($error_msgs as $msg){
-  //     echo "<p>" . $msg . "</p>";
-  //   }
-  //   echo "</div>";
-  // }else{
-  //   echo "送信完了しました。";
-  // }
-  ?> -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -112,6 +103,18 @@
       </p>
     </div>
   </div>
+  <?php
+  // エラーメッセージがある場合に表示
+  if(!empty($error_msgs)){
+    echo "<div class= 'error'>";
+    foreach ($error_msgs as $msg){
+      echo "<p>" . $msg . "</p>";
+    }
+    echo "</div>";
+  }else{
+    echo "送信完了しました。";
+  }
+  ?>
   
   <h1>お問い合わせフォーム</h1>
 
