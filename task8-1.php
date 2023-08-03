@@ -5,7 +5,7 @@
   $email = $_POST['email'] ?? '';
   $tel = $_POST['tel'] ?? '';
   $inquiry = $_POST['inquiry'] ?? '';
-  // var_dump($kana, $_POST['kana'] );
+  var_dump($inquiry, $_POST['inquiry'] );
   $message = $_POST['message'] ?? '';
 
   //フォームが送信された場合の処理
@@ -44,7 +44,7 @@
 
     // エラーメッセージがない場合、送信ページにリダイレクト
     if(empty($error_msgs)){
-      header("Location: task8-2.php");
+      header("Location: task9-1.php");
       exit();
     }
   }
