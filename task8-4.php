@@ -36,7 +36,7 @@
   <main>
   <div class="main_1">
     <div class="main_h2">
-      <h2>お問い合わせ</h2>
+      <h2>送信完了しました。</h2>
     </div>
     <div class="main_p">
       <p>お問い合わせや業務内容に関するご質問は、電話またはこちらのお問い合わせフォームより承っております。
@@ -45,64 +45,8 @@
       </p>
     </div>
   </div>
-  
-  <!-- ここから -->
-  
-<form action="task8-3.php" method="POST">
-  <div class="Form">
-    <div class="Form-Item">
-      <p class="Form-Item-Label">
-        お名前 
-        <span class="Form-Item-Label-Required">必須</span>
-      </p>
-      <input type="text" class="Form-Item-Input" name="name" placeholder="山田太郎">
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label">フリガナ
-        <span class="Form-Item-Label-Required">必須<span> 
-      </p>
-      <input type="text" class="Form-Item-Input"name= "kana" placeholder="ヤマダタロウ">
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label">メールアドレス
-        <span class="Form-Item-Label-Required">必須</span>
-      </p>
-      <input type="email" class="Form-Item-Input" name= "email" placeholder="info@fast-creademy.jp">
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label">電話番号
-        <span class="Form-Item-Label-Required">必須</span>
-      </p>
-      <input type="text" class="Form-Item-Input" name= "tel" placeholder="00000000000">
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label">お問い合わせ項目
-        <span class="Form-Item-Label-Required">必須</span>
-      </p>
-      <select name ="inquiry" class= "Form-Item-Input">
-        <option value= "">選択してください</option>
-        <option value= "問い合わせ1">問い合わせ１</option>
-      </select>
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label isMsg">お問い合わせ内容
-        <span class="Form-Item-Label-Required">必須</span>
-      </p>
-      <textarea class="Form-Item-Textarea" name="message" placeholder="こちらにお問い合わせ内容をご記入ください"></textarea>
-    </div>
-    <div class="Form-Item">
-      <p class="Form-Item-Label">個人情報保護方針
-        <span class="Form-Item-Label-Required">必須</span>
-      </p>
-        <label>
-          <input type="checkbox" name="privacy_policy">
-          <span id="privacy_policy">個人情報保護方針</span><i class="fas fa-window-restore"></i>に同意します。
-        </label>
-      </div>
-    </div>
-    <input type="submit" class="Form-Btn" value="確認">
-</form>
-  <!-- ここまで -->
+
+
   <div class="sec_05">
     <div class="sec_05_left">
       <h5>こちらからご購入ください</h5>

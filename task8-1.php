@@ -1,12 +1,15 @@
   <?php
+  var_dump($_POST['privacy_policy']);
   $error_msgs = array();  //エラーメッセージを格納する配列
   $name = $_POST['name'] ?? '';
+  var_dump($name);
   $kana = $_POST['kana'] ?? '';
   $email = $_POST['email'] ?? '';
   $tel = $_POST['tel'] ?? '';
   $inquiry = $_POST['inquiry'] ?? '';
-  var_dump($inquiry, $_POST['inquiry'] );
+  // var_dump($inquiry, $_POST['inquiry'] );
   $message = $_POST['message'] ?? '';
+  
 
   //フォームが送信された場合の処理
   $is_validated = true;
@@ -39,22 +42,21 @@
       $error_msgs[] ="正しい形式の電話番号を入力してください。";
       $is_validated = false;
     }
-    
 
 
     // エラーメッセージがない場合、送信ページにリダイレクト
-    if(empty($error_msgs)){
-      header("Location: task9-1.php");
-      exit();
+    // if(empty($error_msgs)){
+      //   header("Location: task9-1.php");
+      //   exit();
+      // }
     }
-  }
-  // var_dump($error_msgs);
-  ?>
+    // var_dump($error_msgs);
+    ?>
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="style.css">
@@ -65,7 +67,7 @@
       text-align: center;
       color: red;
     }
-  </style>
+    </style>
 </head>
 <body>
   <header>
@@ -103,7 +105,8 @@
       </p>
     </div>
   </div>
-  <?php
+  
+  <!-- <?php
   // エラーメッセージがある場合に表示
   if(!empty($error_msgs)){
     echo "<div class= 'error'>";
@@ -114,7 +117,7 @@
   }else{
     echo "送信完了しました。";
   }
-  ?>
+  ?> -->
   
   <h1>お問い合わせフォーム</h1>
 
@@ -126,7 +129,7 @@
 <form action="task8-1.php" method="POST">
 <?php endif; ?>
 
-  <div class="Form">
+<div class="Form">
     <div class="Form-Item">
       <p class="Form-Item-Label">
         お名前 
@@ -172,7 +175,7 @@
         <span class="Form-Item-Label-Required">必須</span>
       </p>
         <label>
-          <input type="checkbox" name="privacy_policy">
+          <input type="checkbox" name="privacy_policy" >
           <span id="privacy_policy">個人情報保護方針</span><i class="fas fa-window-restore"></i>に同意します。
         </label>
       </div>
