@@ -48,7 +48,6 @@ try{
     $tel = $_POST['tel'];
     $inquiry = $_POST['inquiry'];
     $inquiry_contents = $_POST['inquiry_contents'];
-
   }
 ?>
 

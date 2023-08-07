@@ -1,3 +1,4 @@
+ <!-- task8-1 -->
 <?php
 session_start();
 $error_msgs= array(); //エラーメッセージを格納する配列
@@ -8,14 +9,14 @@ $tel = $_POST['tel'] ?? '';
 $inquiry = $_POST['inquiry'] ?? '';
 $message = $_POST['message'] ?? '';
 $privacy_policy = $_POST['privacy_policy'] ?? '';
-if(isset($_POST['privacy_policy'])){
-  $_SESSION['privacy_policy'] = $_POST['privacy_policy'];
-}
 
-// var_dump($name);
-// var_dump($inquiry);
-// var_dump($_POST['privacy_policy']);
-// var_dump($message);
+// if(isset($_POST['privacy_policy'])){
+//   $_SESSION['privacy_policy'] = $_POST['privacy_policy'];
+// }
+var_dump($name);
+var_dump($inquiry);
+var_dump($_POST['privacy_policy']);
+var_dump($message);
 
 $is_validated = true;
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -125,8 +126,15 @@ if(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
     </div>
   </div>
 
-  <!-- ここからfoam -->  
-<form action="task8-4.php" method="POST">
+  <!-- ここからform -->  
+
+  <?php 
+if(empty($error_msgs)){
+  echo '<form action="task8-2-1.php" method="POST">';
+}else{
+  echo '<form action="task8-1-1.php" method="POST">';
+}?>
+<!-- <form action="task8-1-1.php" method="POST"> -->
   <div class="Form">
     <div class="Form-Item">
       <p class="Form-Item-Label">
@@ -173,25 +181,24 @@ if(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
         <span class="Form-Item-Label-Required">必須</span>
       </p>
         <label>
-          <input type="checkbox" name="privacy_policy" value ="1"<?php if($privacy_policy == 'on'){
-            echo "checked";}
-          ?>>
+          <input type="checkbox" name="privacy_policy" value ="<?= $privacy_policy;?>" <?php if($privacy_policy == 'on'){
+            echo  "checked";}
+            ?>>
           <span id="privacy_policy">個人情報保護方針</span><i class="fas fa-window-restore"></i>に同意します。
         </label>
       </div>
     </div>
 <?php 
-
 if(empty($error_msgs)){
   echo '<input type="submit" class="Form-Btn" value="送信">';
+  echo '</form>';
 }else{
   echo '<input type="submit" class="Form-Btn" value="確認">';
-}
-if($is_validated){
-  echo '<form action="task8-4.php" method="POST">';
-}
-?>
-</form>
+  echo '</form>';
+}?>
+<!-- </form> -->
+
+
 
 
 <!-- ここまでがfoam -->
