@@ -8,17 +8,17 @@ $email = $_POST['email'] ?? '';
 $tel = $_POST['tel'] ?? '';
 $inquiry = $_POST['inquiry'] ?? '';
 $message = $_POST['message'] ?? '';
-$privacy_policy = $_POST['privacy_policy'] ?? '';
+$privacy_policy = $_POST['privacy_policy'];
 
 // if(isset($_POST['privacy_policy'])){
 //   $_SESSION['privacy_policy'] = $_POST['privacy_policy'];
 // }
-var_dump($name);
-var_dump($inquiry);
-var_dump($_POST['privacy_policy']);
-var_dump($message);
+// var_dump($name);
+// var_dump($inquiry);
+// var_dump($_POST['privacy_policy']);
+// var_dump($message);
 
-$is_validated = true;
+// $is_validated = true;
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
   if(empty($name)){
     $error_msgs[] = "お名前は必須です。";
@@ -31,6 +31,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   }
   if(empty($tel)){
     $error_msgs[] = "電話番号は必須です。";
+  }elseif(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
+    $error_msgs[] ="正しい形式の電話番号を入力してください。";
+    // $is_validated = false;
   }
   if(empty($inquiry)){
     $error_msgs[] = "お問い合わせ項目は必須です。";
@@ -41,14 +44,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   if(empty($privacy_policy)){
     $error_msgs[]= "個人情報保護方針への同意は必須です。";
   }
-  $_SESSION['privacy_policy'] = $privacy_policy;
+  // $_SESSION['privacy_policy'] = $privacy_policy;
   // var_dump($_SESSION);
 }
 
 /* filter_ var(検証したい値,使用するフィルタ,フィルタのオプション*/
 if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)){
   $error_msgs[] = "正しい形式のメールアドレスを入力してください。";
-  $is_validated = false;
+  // $is_validated = false;
 }
 /* if(!preg_match('/^\d{10,11}$/',$_POST['tel']))は
 ^:文字列の先頭を示す
@@ -57,10 +60,6 @@ if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE
 繰り返すことを示している
 $は文字列の末尾を示す。
 */
-if(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
-  $error_msgs[] ="正しい形式の電話番号を入力してください。";
-  $is_validated = false;
-}
 
 // if($is_validated){
 //   echo '<input type="submit" class="Form-Btn" value="送信">';
@@ -130,7 +129,7 @@ if(!preg_match('/^\d{10,11}$/',$_POST['tel'])){
 
   <?php 
 if(empty($error_msgs)){
-  echo '<form action="task8-2-1.php" method="POST">';
+  echo '<form action="task9-1.php" method="POST">';
 }else{
   echo '<form action="task8-1-1.php" method="POST">';
 }?>
@@ -159,7 +158,7 @@ if(empty($error_msgs)){
       <p class="Form-Item-Label">電話番号
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <input type="text" class="Form-Item-Input" name= "tel" placeholder="00000000000" value = "<?= $tel; ?>">
+      <input type="text" class="Form-Item-Input" name= "tel" placeholder="09012345678" value = "<?= $tel; ?>">
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">お問い合わせ項目
@@ -181,7 +180,7 @@ if(empty($error_msgs)){
         <span class="Form-Item-Label-Required">必須</span>
       </p>
         <label>
-          <input type="checkbox" name="privacy_policy" value ="<?= $privacy_policy;?>" <?php if($privacy_policy == 'on'){
+          <input type="checkbox" name="privacy_policy"  <?php if($privacy_policy == 'on'){
             echo  "checked";}
             ?>>
           <span id="privacy_policy">個人情報保護方針</span><i class="fas fa-window-restore"></i>に同意します。

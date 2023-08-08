@@ -1,70 +1,26 @@
 <?php
-$name =$_POST['name'];
-$kana =$_POST['kana'];
-$email =$_POST['email'];
-$tel =$_POST['tel'];
-$inquiry =$_POST['inquiry'];
-$inquiry_contents =$_POST['inquiry_contents'];
-
-// var_dump($_POST[name]);
-// var_dump($name);
-// var_dump($email);
 try{
   $pdo = new PDO(
-    'mysql:host=localhost;dbname=consumer;charset=utf8mb4',
+    'mysql:host=localhost;dbname=consumer1;charset=utf8mb4',
     'root',
-    'root',
-    [
-      PDO::ATTR_DEFAULT_FETCH_MODE =>PDO::FETCH_ASSOC,
-      PDO::ATTR_EMULATE_PREPARES =>false
-    ]
-
-    // ログインする（データベースに）
+    'root'
   );
-  $stmt = $pdo->prepare("INSERT INTO information (name, kana, email, tel, inquiry, inquiry_contents) VALUES (?, ?, ?, ?, ?, ?);");
-  $stmt -> bindParam(1,$name, PDO::PARAM_STR);
-  $stmt -> bindParam(2,$kana, PDO::PARAM_STR);
-  $stmt -> bindParam(3,$email, PDO::PARAM_STR);
-  $stmt -> bindParam(4,$tel, PDO::PARAM_STR);
-  $stmt -> bindParam(5,$inquiry, PDO::PARAM_STR);
-  $stmt -> bindParam(6,$inquiry_contents, PDO::PARAM_STR);
-  
-  $result = $stmt->execute();
-  // var_dump($result);
-  // if($result ===false){
-  //   var_dump($stmt->errorInfo());
-  // }
-  
-  // $pdo->query("DROP TABLE IF EXISTS information");
-  // // TABLE のなかにinformation があれば削除する
-  // $pdo->query(
-  //   "CREATE TABLE information
-  //   (id INT AUTO_INCREMENT PRIMARY KEY,
-  //   name  VARCHAR(128),
-  //   kana  VARCHAR(128),
-  //   email VARCHAR(128),
-  //   tel   VARCHAR(64),
-  //   inquiry VARCHAR(128),
-  //   inquiry_contents  VARCHAR(300)
-  //   )"
-  // );
+  // $pdo->query( 
+  //   "CREATE TABLE information1(
+  //     id INT PRIMARY KEY,
+  //     name  VARCHAR(128) ,
+  //     kana  VARCHAR(128),
+  //     email VARCHAR(128) CHARACTER SET utf8mb4     COLLATE utf8mb4_unicode_ci NOT NULL,,
+  //     tel   VARCHAR(64),
+  //     inquiry VARCHAR(128),
+  //     inquiry_contents  VARCHAR(300)
+    
+
+  $stmt = $pdo->query("SHOW TABLES");
 }catch(PDOException $e){
-  echo $e->getMessage().'<br>';
+  echo $e->getMessage(). '<br>';
   exit;
 }
-
-// $pdo->query(
-//   "INSERT INTO information(id, name, kana, email, tel, inquiry, inquiry_contents) VALUES(?,?,?,?,?,?)");
-
-  // chatGPTに教えてもらったプログラム文章
-  // if ($_SERVER["REQUEST_METHOD"] === "POST") {
-  //   $name = $_POST['name'];
-  //   $kana = $_POST['kana'];
-  //   $email = $_POST['email'];
-  //   $tel = $_POST['tel'];
-  //   $inquiry = $_POST['inquiry'];
-  //   $inquiry_contents = $_POST['inquiry_contents'];
-  // }
 ?>
 
 <!DOCTYPE html>
