@@ -161,7 +161,8 @@
       </p>
       <select name ="inquiry" class= "Form-Item-Input">
         <option value= "">選択してください</option>
-        <option value= "b">問い合わせ１</option>
+        <option value= "b">問い合わせ1</option>
+        <option value= "c">問い合わせ2</option>
       </select>
     </div>
     <div class="Form-Item">

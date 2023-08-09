@@ -28,6 +28,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   }
   if(empty($email)){
     $error_msgs[] = "メールアドレスは必須です。";
+  }elseif(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)){
+    $error_msgs[] = "正しい形式のメールアドレスを入力してください。";
+    /* filter_ var(検証したい値,使用するフィルタ,フィルタのオプション*/
+    // $is_validated = false;
   }
   if(empty($tel)){
     $error_msgs[] = "電話番号は必須です。";
@@ -48,11 +52,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   // var_dump($_SESSION);
 }
 
-/* filter_ var(検証したい値,使用するフィルタ,フィルタのオプション*/
-if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL, FILTER_FLAG_EMAIL_UNICODE)){
-  $error_msgs[] = "正しい形式のメールアドレスを入力してください。";
-  // $is_validated = false;
-}
 /* if(!preg_match('/^\d{10,11}$/',$_POST['tel']))は
 ^:文字列の先頭を示す
 \d:0から9までの数字をしめす
@@ -167,13 +166,14 @@ if(empty($error_msgs)){
       <select name ="inquiry" class= "Form-Item-Input" value = "<?= $inquiry; ?>">
         <option value= "">選択してください</option>
         <option value= "問い合わせ1"<?php if($inquiry == '問い合わせ1') echo 'selected'; ?>>問い合わせ１</option>
+        <option value= "問い合わせ2"<?php if($inquiry == '問い合わせ2') echo 'selected'; ?>>問い合わせ2</option>
       </select>
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label isMsg">お問い合わせ内容
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <textarea class="Form-Item-Textarea" name="message" placeholder="こちらにお問い合わせ内容をご記入ください"><?php echo $message; ?></textarea>
+      <textarea class="Form-Item-Textarea" name="inquiry_contents" placeholder="こちらにお問い合わせ内容をご記入ください"><?php echo $message; ?></textarea>
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">個人情報保護方針

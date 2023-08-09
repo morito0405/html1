@@ -28,13 +28,13 @@ try{
   $stmt -> bindParam(4,$tel, PDO::PARAM_STR);
   $stmt -> bindParam(5,$inquiry, PDO::PARAM_STR);
   $stmt -> bindParam(6,$inquiry_contents, PDO::PARAM_STR);
-  
   $result = $stmt->execute();
+  var_dump($inquiry_contents);
   // var_dump($result);
   // if($result ===false){
   //   var_dump($stmt->errorInfo());
   // }
-  
+
   // $pdo->query("DROP TABLE IF EXISTS information");
   // // TABLE のなかにinformation があれば削除する
   // $pdo->query(
