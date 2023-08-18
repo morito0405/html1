@@ -173,7 +173,7 @@ if(empty($error_msgs)){
       <p class="Form-Item-Label isMsg">お問い合わせ内容
         <span class="Form-Item-Label-Required">必須</span>
       </p>
-      <textarea class="Form-Item-Textarea" name="inquiry_contents" placeholder="こちらにお問い合わせ内容をご記入ください"><?php echo $message; ?></textarea>
+      <textarea class="Form-Item-Textarea" name="message" placeholder="こちらにお問い合わせ内容をご記入ください"><?php echo $message; ?></textarea>
     </div>
     <div class="Form-Item">
       <p class="Form-Item-Label">個人情報保護方針

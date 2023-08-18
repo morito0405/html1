@@ -4,7 +4,7 @@ $kana =$_POST['kana'];
 $email =$_POST['email'];
 $tel =$_POST['tel'];
 $inquiry =$_POST['inquiry'];
-$inquiry_contents =$_POST['inquiry_contents'];
+$inquiry_contents =$_POST['message'];
 
 // var_dump($_POST[name]);
 // var_dump($name);
@@ -29,7 +29,7 @@ try{
   $stmt -> bindParam(5,$inquiry, PDO::PARAM_STR);
   $stmt -> bindParam(6,$inquiry_contents, PDO::PARAM_STR);
   $result = $stmt->execute();
-  var_dump($inquiry_contents);
+  // var_dump($inquiry_contents);
   // var_dump($result);
   // if($result ===false){
   //   var_dump($stmt->errorInfo());
