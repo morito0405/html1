@@ -21,7 +21,8 @@ if(isset($_POST["status"])){
 
   if($_POST["status"] == "create"){
     if(check_input($id, $name, $age, $work, $error) == false){
-
+var_dump($id);
+exit;
       header("Location: syain_create.php?error={$error}");
       exit();
     }
@@ -41,24 +42,28 @@ if(isset($_POST["status"])){
   if($_POST["status"] == "delete"){
     if(check_input($id, $name, $age, $work, $error) == false){
       header("Location: syain_create.php?error={$error}");
-      // exit();
+      exit();
     }
     // var_dump($db->idexist($id));
     // exit;
-    if($db->deletesyain($id) == false){
+
+    if($db->deletesyain($id)== true){
       $error = "DBエラー";
       header("Location.syain_delete.php?error={$error}&id={$id}");
     // var_dump($id);
     // exit;
-    }else{
-      header("Location: index.php");
     }
+      header("Location: index.php");
+      exit();
   }
   
-  if($db->createsyain($id, $name, $age, $work) == false){
+  if($db->createsyain($id, $name, $age, $work)== false){
     $error = "DBエラー";
+    // var_dump($id);
+    // exit;
     header("Location: syain_create.php?error={$error}&id={$id}&name={$name}&age={$age}&work={$work}");
   }
   header("Location: index.php");
   exit();
+  
 }

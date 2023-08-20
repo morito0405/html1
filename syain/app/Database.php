@@ -70,6 +70,7 @@ class Database
   function createsyain($id, $name, $age, $work)
   {
     try{
+      
       $stmt = $this->pdo->prepare("INSERT INTO syain VALUES(?,?,?,?);");
       $stmt->bindParam(1, $id, PDO::PARAM_INT);
       $stmt->bindParam(2, $name, PDO::PARAM_STR);
@@ -88,9 +89,10 @@ class Database
   function deletesyain($id)
   {
     // var_dump($id);
-    // exit;
+    // exit;ここまできている
     try{
-      $stmt = $this->pdo->prepare("DELETE FROM syain WHERE VALUES(id =?);");
+      $this->connect();
+      $stmt = $this->pdo->prepare("DELETE FROM syain WHERE id =?;");
       $stmt->bindParam(1, $id, PDO::PARAM_INT);
       $result = $stmt->execute();
       // var_dump($stmt);
