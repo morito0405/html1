@@ -108,11 +108,10 @@ function show_operation($id){
   // var_dump($id);
   // exit;
   
-
 }
 function show_update($member)
 {
-  show_form($member['id'],$member['name'],$member['age'],$member['work'],"","delete","更新");
+  show_form($member['id'],$member['name'],$member['age'],$member['work'],$member['id'],"update","更新");
 }
 function show_delete($member)
 {
