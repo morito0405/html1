@@ -58,3 +58,21 @@ button{
     background-color: orange;
 }
 
+h2{
+    font-size: 18px;
+    margin-top: 50px;
+}
+
+.comment{
+    display: flex;
+}
+
+.comment button{
+    width: 90px;
+    height: 30px;
+}
+
+.dele{
+    display: inline-block;
+}
+

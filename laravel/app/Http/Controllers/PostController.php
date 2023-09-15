@@ -52,16 +52,15 @@ class PostController extends Controller
         return redirect()->route('index.posts');
     }
 
-    public function search(PostRequest $request){
-        $posts = Post::query();
+    public function search(Request $request){
+        // $posts = Post::query();
         $title = $request->title;
-        if(!empty($title)) {
+        $posts = array();
+        if(isset($title)) {
             $posts = Post::where('title','LIKE','%'.$title.'%')->latest()->get();
             // $posts= Post::where('title', 'LIKE', '%'.$title.'%')
             // ->get();
-            exit;
-        }else{
-            exit;
+            // exit;
         }
         return  view('posts.search')->with(['posts' => $posts]);
     }

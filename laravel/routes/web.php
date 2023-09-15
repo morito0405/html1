@@ -39,6 +39,6 @@ Route::delete('/posts/{id}/destroy', [PostController::class,'destroy'])
     ->name('destroy.posts')
     ->where('id','[0-9]*');
 
-Route::get('/posts/search', [PostController::class,'search'])
+Route::get('/posts/search',[PostController::class,'search'])
     ->name('search.posts');
-
+// これが起動中

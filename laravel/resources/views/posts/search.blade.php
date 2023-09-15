@@ -1,7 +1,7 @@
 <x-layout>
     <a href="{{ route('index.posts')}}" class="re">戻る</a>
     <h1>検索画面</h1>
-    
+
     <form action="{{ route('search.posts')}}" method="get">
         <label>
             Title検索

@@ -52,7 +52,7 @@ TABLE3;
 
 function show_form($id, $name, $age, $work, $old_id,$status, $button)
 {
-  $error = "";
+  // $error = "";
   $error = get_error();
   echo <<<FORM
     <form action="post_data.php" method="post">
@@ -74,7 +74,7 @@ FORM;
 
 function show_create($id,$name,$age,$work)
 {
-  $error = get_error();
+  // $error = get_error();
   // var_dump($id);
   // exit;
   show_form($id,$name,$age,$work,"","create","登録");
